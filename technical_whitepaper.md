@@ -1,7 +1,3 @@
-[nrf52_nfc_module_doc]: https://infocenter.nordicsemi.com/index.jsp?topic=%2Fcom.nordic.infocenter.nrf52832.ps.v1.1%2Fnfc.html
-
-[nxp_rc522_datasheet]: https://www.nxp.com/docs/en/data-sheet/MFRC522.pdf
-
 # ChameleonUltra
 
 Why not keep using ATXMEGA128?
@@ -27,110 +23,110 @@ functions have been realized with it!
 
 ## High Frequency Attack
 
-| Attack Type  |    Tag Type    | Whether the hardware supports | Does the software support | Whether the application layer supports |                     Note |
-|--------------|:--------------:|------------------------------:|---------------------------|:--------------------------------------:|-------------------------:|
-| Sniffing     |       No       |                            No | No                        |                   No                   |                          |
-| MFKEY32 V2   | MIFARE Classic |                       Support | Support                   |                Support                 | MIFARE Classic Detection |
-| Darkside     | MIFARE Classic |                       Support | Support                   |                Support                 |     Encrypted 4 bit NAck |
-| Nested       | MIFARE Classic |                       Support | Support                   |                Support                 |     PRNG(Distance guess) |
-| StaticNested | MIFARE Classic |                       Support | Support                   |                Support                 |   PRNG(2NT Fast Decrypt) |
-| HardNested   | MIFARE Classic |                       Support | Support                   |          Not yet implemented           |                       No |
-| Relay attack |   ISO14443A    |                       Support | Support                   |          Not yet implemented           |                       No |
+| Attack Type | Tag Type | Whether the hardware supports | Does the software support | Whether the application layer supports | Note |
+| --- | --- | --- | --- | --- | --- |
+| Sniffing | ISO14443A | Support | Support | Support | `hf 14a sniff` â passive ISO14443-A frame capture via NFCT peripheral; decodes REQA/WUPA, anti-collision, SELECT, AUTH, APDU |
+| MFKEY32 V2 | MIFARE Classic | Support | Support | Support | MIFARE Classic Detection |
+| Darkside | MIFARE Classic | Support | Support | Support | Encrypted 4 bit NAck |
+| Nested | MIFARE Classic | Support | Support | Support | PRNG(Distance guess) |
+| StaticNested | MIFARE Classic | Support | Support | Support | PRNG(2NT Fast Decrypt) |
+| HardNested | MIFARE Classic | Support | Support | Not yet implemented | No |
+| Relay attack | ISO14443A | Support | Support | Not yet implemented | No |
 
 ## High Frequency emulation
 
-| Card Type                      |    Encoding Type     | Whether the hardware supports | Does the software support | Whether the application layer supports |                                     Note |
-|--------------------------------|:--------------------:|------------------------------:|---------------------------|:--------------------------------------:|-----------------------------------------:|
-| Other than ISO14443A           |          No          |                            No | No                        |                   No                   | [NRF52 NFC Module][nrf52_nfc_module_doc] |
-| NTAG 21x (210-218)             | ISO14443A/106 kbit/s |                       Support | Support                   |          Not yet implemented           |                                          |
-| MIFARE Ultralight              | ISO14443A/106 kbit/s |                       Support | Support                   |          Not yet implemented           |                                          |
-| MIFARE Ultralight Ev1          | ISO14443A/106 kbit/s |                       Support | Support                   |          Not yet implemented           |                                          |
-| MIFARE Ultralight C            | ISO14443A/106 kbit/s |                       Support | Support                   |          Not yet implemented           |                                          |
-| MIFARE Classic1K/2K/4K (4B/7B) | ISO14443A/106 kbit/s |                       Support | Support                   |                Support                 |                                          |
-| MIFARE DESFire                 | ISO14443A High Rate  |       Only supported Low rate | Only supported Low rate   |          Not yet implemented           |                                          |
-| MIFARE DESFire EV1             | ISO14443A High rate  |       Only supported Low rate | Only supported Low rate   |          Not yet implemented           |                      Backward compatible |
-| MIFARE DESFire EV2             | ISO14443A High rate  |       Only supported Low rate | Only supported Low rate   |          Not yet implemented           |                                          |
-| MIFARE Plus                    | ISO14443A High rate  |       Only supported Low rate | Only supported Low rate   |          Not yet implemented           |                                          |
+| Card Type | Encoding Type | Whether the hardware supports | Does the software support | Whether the application layer supports | Note |
+| --- | --- | --- | --- | --- | --- |
+| Other than ISO14443A | No | No | No | No | [NRF52 NFC Module](https://infocenter.nordicsemi.com/index.jsp?topic=%2Fcom.nordic.infocenter.nrf52832.ps.v1.1%2Fnfc.html) |
+| NTAG 21x (210-218) | ISO14443A/106 kbit/s | Support | Support | Not yet implemented |  |
+| MIFARE Ultralight | ISO14443A/106 kbit/s | Support | Support | Not yet implemented |  |
+| MIFARE Ultralight Ev1 | ISO14443A/106 kbit/s | Support | Support | Not yet implemented |  |
+| MIFARE Ultralight C | ISO14443A/106 kbit/s | Support | Support | Not yet implemented |  |
+| MIFARE Classic1K/2K/4K (4B/7B) | ISO14443A/106 kbit/s | Support | Support | Support |  |
+| MIFARE DESFire | ISO14443A High Rate | Only supported Low rate | Only supported Low rate | Not yet implemented |  |
+| MIFARE DESFire EV1 | ISO14443A High rate | Only supported Low rate | Only supported Low rate | Not yet implemented | Backward compatible |
+| MIFARE DESFire EV2 | ISO14443A High rate | Only supported Low rate | Only supported Low rate | Not yet implemented |  |
+| MIFARE Plus | ISO14443A High rate | Only supported Low rate | Only supported Low rate | Not yet implemented |  |
 
 ## High Frequency Reader
 
-| Card Type                       |    Encoding Type     |                Whether the hardware supports | Does the software support                    | Whether the application layer supports |                                       Note |
-|---------------------------------|:--------------------:|---------------------------------------------:|----------------------------------------------|:--------------------------------------:|-------------------------------------------:|
-| Non <13.56MHz or ISO14443A>     |          No          |                                           No | No                                           |                   No                   | [NXP RC522 Datasheet][nxp_rc522_datasheet] |
-| NTAG 21x (210-218)              | ISO14443A/106 kbit/s |                                      Support | Support                                      |          Not yet implemented           |                                            |
-| MIFARE Ultralight               | ISO14443A/106 kbit/s |                                      Support | Support                                      |          Not yet implemented           |                                            |
-| MIFARE Ultralight Ev1           | ISO14443A/106 kbit/s |                                      Support | Support                                      |          Not yet implemented           |                                            |
-| MIFARE Ultralight C             | ISO14443A/106 kbit/s |                                      Support | Support                                      |          Not yet implemented           |                                            |
-| MIFARE Classic 1K/2K/4K (4B/7B) | ISO14443A/106 kbit/s |                                      Support | Support                                      |                Support                 |                                            |
-| MIFARE DESFire                  | ISO14443A High Rate  | Supports low rates, or possibly higher rates | Supports low rates, or possibly higher rates |          Not yet implemented           |                                            |
-| MIFARE DESFire EV1              | ISO14443A High rate  | Supports low rates, or possibly higher rates | Supports low rates, or possibly higher rates |          Not yet implemented           |                        Backward compatible |
-| MIFARE DESFire EV2              | ISO14443A High rate  | Supports low rates, or possibly higher rates | Supports low rates, or possibly higher rates |          Not yet implemented           |                                            |
-| MIFARE Plus                     | ISO14443A High rate  | Supports low rates, or possibly higher rates | Supports low rates, or possibly higher rates |          Not yet implemented           |                                            |
+| Card Type | Encoding Type | Whether the hardware supports | Does the software support | Whether the application layer supports | Note |
+| --- | --- | --- | --- | --- | --- |
+| Non <13.56MHz or ISO14443A> | No | No | No | No | [NXP RC522 Datasheet](https://www.nxp.com/docs/en/data-sheet/MFRC522.pdf) |
+| NTAG 21x (210-218) | ISO14443A/106 kbit/s | Support | Support | Not yet implemented |  |
+| MIFARE Ultralight | ISO14443A/106 kbit/s | Support | Support | Not yet implemented |  |
+| MIFARE Ultralight Ev1 | ISO14443A/106 kbit/s | Support | Support | Not yet implemented |  |
+| MIFARE Ultralight C | ISO14443A/106 kbit/s | Support | Support | Not yet implemented |  |
+| MIFARE Classic 1K/2K/4K (4B/7B) | ISO14443A/106 kbit/s | Support | Support | Support |  |
+| MIFARE DESFire | ISO14443A High Rate | Supports low rates, or possibly higher rates | Supports low rates, or possibly higher rates | Not yet implemented |  |
+| MIFARE DESFire EV1 | ISO14443A High rate | Supports low rates, or possibly higher rates | Supports low rates, or possibly higher rates | Not yet implemented | Backward compatible |
+| MIFARE DESFire EV2 | ISO14443A High rate | Supports low rates, or possibly higher rates | Supports low rates, or possibly higher rates | Not yet implemented |  |
+| MIFARE Plus | ISO14443A High rate | Supports low rates, or possibly higher rates | Supports low rates, or possibly higher rates | Not yet implemented |  |
 
 ## Low Frequency Attack
 
-| Vulnerability Type | Tag Type  | Whether the hardware supports | Does the software support | Whether the application layer supports | Note |
-|--------------------|:---------:|------------------------------:|---------------------------|:--------------------------------------:|-----:|
-| Sniffing           |  125KHz   |                       Support | Support                   |          Not yet implemented           |      |
-| Brute Force        | EM410x ID |                       Support | Support                   |          Not yet implemented           |      |
+| Vulnerability Type | Tag Type | Whether the hardware supports | Does the software support | Whether the application layer supports | Note |
+| --- | --- | --- | --- | --- | --- |
+| Sniffing | 125KHz | Support | Support | Support | `lf sniff` â raw SAADC capture at 125kHz; `data hexsamples`, `data plot`, `data manrawdecode`, `data modulation` for offline analysis |
+| Brute Force | EM410x ID | Support | Support | Not yet implemented |  |
 
 ## Low Frequency emulation
 
-| Card Type                       | Encoding Type | Whether the hardware supports | Does the software support | Whether the application layer supports |                                          Note |
-|---------------------------------|:-------------:|------------------------------:|---------------------------|:--------------------------------------:|----------------------------------------------:|
-| Other than <125KHz/ASK/PSK/FSK> |      No       |                            No | No                        |                   No                   | Only 125 khz RF, Modulation ASK, FSK and PSK. |
-| EM410x                          |      ASK      |                       Support | Support                   |                Support                 |                   EM4100 is support (AD 16/32/64bit) |
-| T5577                           |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| EM4305                          |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| HID Prox                        |      FSK      |                       Support | Support                   |                Support               |                                               |
-| Indala                          |      PSK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| FDX-B                           |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| Paradox                         |      FSK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| Keri                            |      PSK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| AWD                             |      FSK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| ioProx                          |      FSK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| securakey                       |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| gallagher                       |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| PAC/Stanley                     |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| Presco                          |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| Visa2000                        |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| Viking                          |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| Noralsy                         |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| NexWatch                        |      PSK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| Jablotron                       |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
+| Card Type | Encoding Type | Whether the hardware supports | Does the software support | Whether the application layer supports | Note |
+| --- | --- | --- | --- | --- | --- |
+| Other than <125KHz/ASK/PSK/FSK> | No | No | No | No | Only 125 khz RF, Modulation ASK, FSK and PSK. |
+| EM410x | ASK | Support | Support | Support | EM4100 is support (AD 16/32/64bit) |
+| T5577 | ASK | Support | Support | Not yet implemented |  |
+| EM4305 | ASK | Support | Support | Not yet implemented |  |
+| HID Prox | FSK | Support | Support | Support |  |
+| Indala | PSK | Support | Support | Not yet implemented |  |
+| FDX-B | ASK | Support | Support | Not yet implemented |  |
+| Paradox | FSK | Support | Support | Not yet implemented |  |
+| Keri | PSK | Support | Support | Not yet implemented |  |
+| AWD | FSK | Support | Support | Not yet implemented |  |
+| ioProx | FSK | Support | Support | Not yet implemented |  |
+| securakey | ASK | Support | Support | Not yet implemented |  |
+| gallagher | ASK | Support | Support | Not yet implemented |  |
+| PAC/Stanley | ASK | Support | Support | Not yet implemented |  |
+| Presco | ASK | Support | Support | Not yet implemented |  |
+| Visa2000 | ASK | Support | Support | Not yet implemented |  |
+| Viking | ASK | Support | Support | Not yet implemented |  |
+| Noralsy | ASK | Support | Support | Not yet implemented |  |
+| NexWatch | PSK | Support | Support | Not yet implemented |  |
+| Jablotron | ASK | Support | Support | Not yet implemented |  |
 
 ## Low Frequency Reader
 
-| Card Type                       | Encoding Type | Whether the hardware supports | Does the software support | Whether the application layer supports |                                          Note |
-|---------------------------------|:-------------:|------------------------------:|---------------------------|:--------------------------------------:|----------------------------------------------:|
-| Other than <125KHz/ASK/PSK/FSK> |      No       |                            No | No                        |                   No                   | Only 125 khz RF, Modulation ASK, FSK and PSK. |
-| EM410x                          |      ASK      |                       Support | Support                   |                Support                 |                                               |
-| T5577                           |      ASK      |                       Support | Support                   |             Support(Write)             |                                               |
-| EM4305                          |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| HID Prox                        |      FSK      |                       Support | Support                   |                 Support            |                                               |
-| Indala                          |      PSK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| FDX-B                           |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| Paradox                         |      FSK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| Keri                            |      PSK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| AWD                             |      FSK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| ioProx                          |      FSK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| securakey                       |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| gallagher                       |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| PAC/Stanley                     |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| Presco                          |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| Visa2000                        |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| Viking                          |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| Noralsy                         |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| NexWatch                        |      PSK      |                       Support | Support                   |          Not yet implemented           |                                               |
-| Jablotron                       |      ASK      |                       Support | Support                   |          Not yet implemented           |                                               |
+| Card Type | Encoding Type | Whether the hardware supports | Does the software support | Whether the application layer supports | Note |
+| --- | --- | --- | --- | --- | --- |
+| Other than <125KHz/ASK/PSK/FSK> | No | No | No | No | Only 125 khz RF, Modulation ASK, FSK and PSK. |
+| EM410x | ASK | Support | Support | Support |  |
+| T5577 | ASK | Support | Support | Support(Write) |  |
+| EM4305 / EM4x69 | ASK (RTF) | Support | Support | Support | `lf em 4x05 read` â gap-encoded READ command, 45-bit Manchester decode, LOGIN support for password-protected tags |
+| HID Prox | FSK | Support | Support | Support |  |
+| Indala | PSK | Support | Support | Not yet implemented |  |
+| FDX-B | ASK | Support | Support | Not yet implemented |  |
+| Paradox | FSK | Support | Support | Not yet implemented |  |
+| Keri | PSK | Support | Support | Not yet implemented |  |
+| AWD | FSK | Support | Support | Not yet implemented |  |
+| ioProx | FSK | Support | Support | Not yet implemented |  |
+| securakey | ASK | Support | Support | Not yet implemented |  |
+| gallagher | ASK | Support | Support | Not yet implemented |  |
+| PAC/Stanley | ASK | Support | Support | Not yet implemented |  |
+| Presco | ASK | Support | Support | Not yet implemented |  |
+| Visa2000 | ASK | Support | Support | Not yet implemented |  |
+| Viking | ASK | Support | Support | Support |  |
+| Noralsy | ASK | Support | Support | Not yet implemented |  |
+| NexWatch | PSK | Support | Support | Not yet implemented |  |
+| Jablotron | ASK | Support | Support | Not yet implemented |  |
 
 ## Low Frequency Modulation
 
-| Modulation Type |                                 wav |
-|-----------------|------------------------------------:|
-| PSK             | ![PSK WAV](images/measured-psk.png) |
-| FSK             | ![FSK WAV](images/measured-fsk.png) |
-| ASK             | ![ASK WAV](images/measured-ask.png) |
+| Modulation Type | wav |
+| --- | --- |
+| PSK | PSK WAV |
+| FSK | FSK WAV |
+| ASK | ASK WAV |
 
 # Ultra-low power consumption
 
@@ -138,7 +134,7 @@ It integrates a high-performance and low-power NFC module inside. When the NFC u
 the chip is only 5mA @3.3V.
 The underlying interaction is done independently by the NFC unit and does not occupy the CPU.
 In addition, the nRF52840 itself is a high-performance low-power BLE chip, and the encryption and calculation process is
-only 7mA @3.3V. It can greatly reduce the battery volume and prolong the working time. That is to say, the 35mAh 10mm*
+only 7mA @3.3V. It can greatly reduce the battery volume and prolong the working time. That is to say, the 35mAh 10mm\*
 40mm button lithium battery can guarantee to be charged once every half a year under the working condition of swiping
 the card 8 times a day for 3 seconds each time. Full potential for everyday use.
 
@@ -164,25 +160,25 @@ testing a variety of common low-power reading heads, they can open the door perf
 
 # Ultra-fast response speed and low interaction delay(MIFARE Classic)
 
-| Tag/Emulation        |                                      FDT                                      |                                "**_FDT_**" Rating                                |
-|----------------------|:-----------------------------------------------------------------------------:|:--------------------------------------------------------------------------------:|
-| Standard MIFARE Card |                ![Standard_m1_s50](images/fdt_standard_s50.png)                | &#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50; |
-| Chameleon Ultra      |              ![Chameleon Ultra](images/fdt_chameleon_ultra.png)               |         &#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;         |
-| Proxmark3 Rdv4.01    | ![Proxmark3_Rdv4_RRG_(Firmware build at 20201026)](images/fdt_pm3_rdv401.png) |                         &#x2B50;&#x2B50;&#x2B50;&#x2B50;                         |
-| RedMi K30            |               ![Xiaomi_k30u_smartkey](images/fdt_redmi_k30.png)               |                 &#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;                 |
-| Chameleon Tiny       |               ![Chameleon Tiny](images/fdt_chameleon_tiny.png)                |                     &#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;                     |
-| Flipper Zero         |                 ![Flipper Zero](images/fdt_flipper_zero.png)                  |                                 &#x2B50;&#x2B50;                                 |
+| Tag/Emulation | FDT | "***FDT***" Rating |
+| --- | --- | --- |
+| Standard MIFARE Card | Standard_m1_s50 | â­â­â­â­â­â­â­â­â­â­ |
+| Chameleon Ultra | Chameleon Ultra | â­â­â­â­â­â­â­â­ |
+| Proxmark3 Rdv4.01 | Proxmark3_Rdv4_RRG_(Firmware build at 20201026) | â­â­â­â­ |
+| RedMi K30 | Xiaomi_k30u_smartkey | â­â­â­â­â­â­ |
+| Chameleon Tiny | Chameleon Tiny | â­â­â­â­â­ |
+| Flipper Zero | Flipper Zero | â­â­ |
 
 # 256kB super large RAM cooperates with RC522 to enable attacks
 
-| Attack Type  |                            CLI                             |
-|--------------|:----------------------------------------------------------:|
-| MFKEY32 V2   |     ![attack_MIFARE_mfkey32](images/cli_mfkey32v2.png)     |
-| Darkside     |     ![attack_MIFARE_darkside](images/cli_darkside.png)     |
-| Nested       |       ![attack_MIFARE_nested](images/cli_nested.png)       |
-| StaticNested | ![attack_MIFARE_staticnested](images/cli_staticnested.jpg) |
-| HardNested   |                        Coming Soon                         |
-| Relay attack |                        Coming Soon                         |
+| Attack Type | CLI |
+| --- | --- |
+| MFKEY32 V2 | attack_MIFARE_mfkey32 |
+| Darkside | attack_MIFARE_darkside |
+| Nested | attack_MIFARE_nested |
+| StaticNested | attack_MIFARE_staticnested |
+| HardNested | Coming Soon |
+| Relay attack | Coming Soon |
 
 # Hardware frame diagram
 
@@ -197,3 +193,5 @@ When the project got open-sourced, DXL shared a few notes in [issue #1](https://
 **Firmware:** Chameleon Ultra is a very powerful platform. We can develop various 14A protocol card simulations based on this platform. In terms of high-frequency card simulation, DXL has completed the development of high-performance MifareClassic Mini ->S50 ->S70 card. However, the development of cards for other technologies has not been completed, such as UL, UL-C, NTAG, etc. In terms of low-frequency card simulation, DXL has completed the development of EM410x, but the development of other technology cards has not been completed, such as FSK and PSK-related technology cards. For card reader, DXL has completed the reading, writing and decryption of M1 card, reading EM410x and writing to T5577. Others, such as the reading and writing of UL card and NTAG card, are not completed yet.
 
 **Client:** At present, ChameleonUltra uses python to develop the CLI, cooperate with independent exe to perform the decryption task, and complete the decoupling of the business logic of the CLI and the decryption algorithm logic. Due to time reasons, DXL only completes commands such as device connection, M1 card data upload, M1 card detection log download and decryption, M1 card read and write block, and so on. The complete nested, rdsc, and autopwn instructions like PM3 have not yet been implemented, which may require our joint efforts. Finally, I believe that Chameleon Ultra is definitely not limited to CLI as a way of device interaction. Perhaps we can further develop PC-side GUI, and develop IOS and Android APP. USB+BLE support makes everything possible.
+
+Chameleon Ultra - [GPLV3 Licensed](https://github.com/RfidResearchGroup/ChameleonUltra/blob/main/LICENSE) - Made with â¤ï¸ by the community
